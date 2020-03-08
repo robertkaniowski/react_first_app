@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kurs Reacta - Tydzień 2 - Lekcja 6 zadania 1</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <style>
+    .App {
+        font-family: sans-serif;
+    }
+
+    .TimeboxEditor {
+        text-align: right;
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        min-width: 60%;
+        margin-left: 20px;
+        font-size: 16px;
+    }
+
+    button{
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .Timebox {
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .Clock {
+        color: orangered;
+    }
+
+    .ProgressBar {
+        border: 1px solid orangered;
+        border-radius: 5px;
+        height: 25px;
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+
+    .ProgressBar > div {
+        height: 100%;
+        background-color: orangered;
+    }
+
+    .inactive {
+        filter: blur(2px) grayscale(1)
+    }
+    </style>
+</head>
+<body>
+    <h1>Kurs Reacta Tydzień 2 Lekcja 6 zadanie 1</h1>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+    <hr>
+    <div class="App">
+    </div>
+</body>
+<script type="text/javascript">
+
+function createElementByClass(tag, parent,id,classAttr,content){
+    let parentElement = document.querySelector(parent)
+    let currentElement = document.createElement(tag);
+    if (id ){
+        currentElement.id = id;
+    }
+    if (classAttr ){
+        currentElement.className =  classAttr;
+    }
+    currentElement.textContent = content;
+    parentElement.append(currentElement)
+}
+function createLabelByClass(parent,content,status,value,type){
+    let parentElement = document.querySelector(parent)
+    let currentElement = document.createElement('label');
+    currentElement.textContent = content;
+    let inputContent = document.createElement('input');
+    inputContent.value = value;
+    inputContent.type = type;
+    inputContent.disabled = status;
+    currentElement.append(inputContent);
+    let brElement = document.createElement('br');
+    currentElement.append(brElement);
+    parentElement.append(currentElement);
+}
+function AddButton(parent ,status, content){
+    let parentElement = document.querySelector(parent);
+    let buttonElement = document.createElement('button');
+    buttonElement.disabled = status;
+    buttonElement.textContent = content;
+    parentElement.append(buttonElement);
+}
+function AddProgerssBar(parent, value){
+    let parentElement = document.querySelector(parent);
+    let progerssBarElement = document.createElement('div');
+    progerssBarElement.style.width = value;
+    parentElement.append(progerssBarElement);
+
+}
+createElementByClass('div','.App','','TimeboxEditor inactive','');
+createLabelByClass('.TimeboxEditor','Co robisz?',false,'Uczę się skrótów klawiszowych',);
+createLabelByClass('.TimeboxEditor','Ile minut?',false,'25','number');
+AddButton('.TimeboxEditor',true,"Zacznij");
+createElementByClass('div','.App','','Timebox','');
+createElementByClass('h1','.Timebox','',false,'Uczę się skrótów klawiszowych');
+createElementByClass('h2','.Timebox','','Clock','Pozostało 13:28');
+createElementByClass('div','.Timebox','root','','');
+createElementByClass('div','.Timebox','','ProgressBar');
+AddProgerssBar('.ProgressBar','45%');
+AddButton('.Timebox',false,"Start");
+AddButton('.Timebox',true,"Stop");
+AddButton('.Timebox',true,"Pauzuj");
+createElementByClass('p','.Timebox','','','Liczba przerw: 2');
+</script>
+</html>
